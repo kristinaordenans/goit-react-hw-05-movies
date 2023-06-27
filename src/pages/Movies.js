@@ -1,13 +1,45 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { fetchSearchMovie } from 'Utils/MuvieAPI';
+import { Loader } from 'components/Loader/Loader';
+import { MoviesList } from 'components/MoviesList/MoviesList';
+import { SearchForm } from 'components/SearchForm/SearchForm';
+
+
 
 export const Movies = () => {
-    //  список популярних фільмів
-    // useEffect(() => {
-    // })
-    return <div>
-        <h2>Trending today</h2>
-        {['film-1', 'film-2', 'film-3', 'film-4', 'film-5'].map(film => {
-            return (<Link key={film} to={`${film}`}> { film }</Link>);
-        })}
-    </div>
+    const [data, setData] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [loading, setLoading] = useState(false);
+    const movieId = searchParams.get(`movieId`) ?? '';
+
+  useEffect(() => {
+    if (!movieId) return;
+    setLoading(true);
+
+    fetchSearchMovie(movieId)
+      .then(({ results }) => {
+        if (!results.length) {
+          setSearchParams({});
+          throw new Error(`"${movieId}" not found`);
+        }
+        setData(results);
+      })
+      .catch(err => alert('error:' + err))
+      .finally(setLoading(false));
+    }, [movieId, setSearchParams]);
+
+   const handleSubmit = searchMovieId => {
+    if (!searchMovieId) return setSearchParams({});
+    setSearchParams({ movieId: searchMovieId });
+  };
+
+  return (
+    <main>
+      {loading && <Loader />}
+      <SearchForm handleSubmit={handleSubmit} />
+      {data.length !== 0 && <MoviesList data={data} />}
+      {!loading && <MoviesList data={data} />}
+    </main>
+  ); 
 }
