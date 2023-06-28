@@ -1,0 +1,23 @@
+.form{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap:5px;
+}
+
+.btn {
+    background-color: rgb(255, 128, 0);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: rgb(244, 142, 40);
+}

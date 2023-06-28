@@ -4,8 +4,7 @@ import { fetchSearchMovie } from 'Utils/MuvieAPI';
 import { Loader } from 'components/Loader/Loader';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { SearchForm } from 'components/SearchForm/SearchForm';
-
-
+import css from "./Movies.module.css"
 
 export const Movies = () => {
     const [data, setData] = useState([]);
@@ -36,8 +35,10 @@ export const Movies = () => {
 
   return (
     <main>
-      {loading && <Loader />}
-      <SearchForm handleSubmit={handleSubmit} />
+      <div className={css.search}>
+        {loading && <Loader />}
+        <SearchForm handleSubmit={handleSubmit} />
+      </div>
       {data.length !== 0 && <MoviesList data={data} />}
       {!loading && <MoviesList data={data} />}
     </main>

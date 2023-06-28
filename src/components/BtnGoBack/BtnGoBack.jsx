@@ -1,7 +1,9 @@
+import css from './BtnGoBack.module.css';
+
 export const BtnGoBack = () => {
   return (
     <div>
-      <button type="button">Go back</button>
+      <button className={css.button} type="button">Go back</button>
     </div>
   );
 };

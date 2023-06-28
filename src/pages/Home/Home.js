@@ -17,10 +17,10 @@ fetchTrandingMovies(setData)
   }, []);
     
     return (
-        <>
+        <main>
             {loading && <Loader />}
             <h2>Trending today</h2>
             <MoviesList  data={data}/>
-        </>
+        </main>
     )
 }

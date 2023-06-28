@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { Layout } from "./Layout";
-import { Home } from "../pages/Home";
-import { Movies } from "../pages/Movies";
-import { MovieDetails } from "../pages/MovieDetails";
+import { Layout } from "./Layout/Layout";
+import { Home } from "../pages/Home/Home";
+import { Movies } from "../pages/Movies/Movies";
+import { MovieDetails } from "../pages/MovieDetails/MovieDetails";
 import { Cast } from "../components/Cast/Cast";
 import { Reviews } from "../components/Reviews/Reviews";
+import css from "./App.module.css";
 
 export const App = () => {
   return (

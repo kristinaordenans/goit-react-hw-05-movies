@@ -4,6 +4,7 @@ import { fetchMovieById } from "Utils/MuvieAPI";
 import { Link, Outlet } from "react-router-dom";
 import { Loader } from "components/Loader/Loader";
 import { BtnGoBack } from "components/BtnGoBack/BtnGoBack";
+import css from "./MovieDetails.module.css";
 
 export const MovieDetails = () => {
   const [dataMovie, setDataMovie] = useState(null);
@@ -31,16 +32,16 @@ export const MovieDetails = () => {
     : '';
 
   return (
-    <>
+    <div className={css.container}>
       <Link to={previousUrlLocation.current}>
         <BtnGoBack />
       </Link>
       <div>
         {loading && <Loader />}
         {dataMovie && (
-          <>
+          <div className={css.movieWrap}>
             <div>
-              <img src={IMG} alt={dataMovie.title} />
+              <img className={css.img} src={IMG} alt={dataMovie.title} />
             </div>
             <div>
               <h1>{`${dataMovie.title} ${releaseData}`}</h1>
@@ -61,7 +62,7 @@ export const MovieDetails = () => {
                 <p>There is no any genres for this movie</p>
               )}
             </div>
-          </>
+          </div>
         )}
       </div>
       <div>
@@ -76,6 +77,6 @@ export const MovieDetails = () => {
         </ul>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };
