@@ -5,7 +5,7 @@ import { Movies } from "../pages/Movies/Movies";
 import { MovieDetails } from "../pages/MovieDetails/MovieDetails";
 import { Cast } from "../components/Cast/Cast";
 import { Reviews } from "../components/Reviews/Reviews";
-import css from "./App.module.css";
+// import css from "./App.module.css";
 
 export const App = () => {
   return (
